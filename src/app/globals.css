@@ -25,3 +25,9 @@
   justify-content: center;
 
 }
+.textAlignCenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
