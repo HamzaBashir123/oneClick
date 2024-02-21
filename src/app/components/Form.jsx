@@ -1,10 +1,17 @@
+'use client'
 import React from "react";
 import Image from "next/image";
-import location from "../assets/About/location.png";
+import travelImg from "../assets/Takaful/travelside.svg";
 import "../globals.css";
 
 import Example from "./TravelBannerForm ";
 import DropdownMenu from "./TravelBannerForm ";
+import BasicDateRangeField from "./DateRange";
+import DateValidationShouldDisableMonth from "./DatePicker";
+import { Dropdown, Menu, MenuButton, MenuItem } from "@mui/joy";
+import { ArrowDropDown } from "@mui/icons-material";
+import WrappedMenuItems from "./DropDownMenu";
+
 
 const Form = () => {
   return (
@@ -15,8 +22,8 @@ const Form = () => {
             <div className="lg:col-span-3 lg:py-12 flex">
               <Image
                 className="background-color p-4  bg-gradient-to-t from-cyan-500 to-blue-500 rounded-lg mx-5"
-                src={location}
-                width={250}
+                src={travelImg}
+                width={350}
                 height={50}
               />
               <div className="textAlignCenter text-black mx-2 ">
@@ -134,7 +141,7 @@ const Form = () => {
     - @tailwindcss/forms
 */}
 
-                <label
+                {/* <label
                   htmlFor="DateofRange"
                   className="relative block rounded-md border border-gray-200 shadow-lg focus-within:border-grey-700 focus-within:ring-1 focus-within:ring-grey-600"
                 >
@@ -149,34 +156,35 @@ const Form = () => {
                     Select Date Range
                   </span>
                 </label>
+                 */}
+                 <BasicDateRangeField/>
                 {/* ////////////////////////////////////////////////////// */}
 
                 {/* <DropdownMenu/> */}
+                <Dropdown>
+                              <MenuButton
+                                variant="plain"
+                                size="sm"
+                                endDecorator={<ArrowDropDown/>}
+                                className="text-lg font-light leading-10 hover:bg-transparent hover:text-slate-300 border-solid border-2 border-gray-200 w-full  rounded-lg"
+                              >
+                                Takaful & Insurance
+                              </MenuButton>
+                              <Menu size="sm">
+                                <WrappedMenuItems/>
+                              </Menu>
+                            </Dropdown>
 
                 {/* ////////////////////////////////////////////////////// */}
 
-                <label
-                  htmlFor="DateofBirth"
-                  className="relative block rounded-md border border-gray-200 shadow-lg focus-within:border-grey-700 focus-within:ring-1 focus-within:ring-grey-600"
-                >
-                  <input
-                    type="date"
-                    id="DateofBirth"
-                    className="px-5 py-2 peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 leading-10 w-full px-5"
-                    placeholder="Self Date of Birth"
-                  />
-
-                  <span className="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs">
-                    Self Date of Birth
-                  </span>
-                </label>
+                <DateValidationShouldDisableMonth/>
 
                 <div className="mt-4">
                   <button
                     type="submit"
                     className="inline-block w-screen rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-full  "
                   >
-                    Send Enquiry
+                    View Quotes
                   </button>
                 </div>
               </form>
