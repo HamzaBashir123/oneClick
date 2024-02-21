@@ -11,6 +11,7 @@ import DateValidationShouldDisableMonth from "./DatePicker";
 import { Dropdown, Menu, MenuButton, MenuItem } from "@mui/joy";
 import { ArrowDropDown } from "@mui/icons-material";
 import WrappedMenuItems from "./DropDownMenu";
+import MultipleSelectCheckmarks from "./DropDownMenu";
 
 
 const Form = () => {
@@ -161,20 +162,7 @@ const Form = () => {
                 {/* ////////////////////////////////////////////////////// */}
 
                 {/* <DropdownMenu/> */}
-                <Dropdown>
-                              <MenuButton
-                                variant="plain"
-                                size="sm"
-                                endDecorator={<ArrowDropDown/>}
-                                className="text-lg font-light leading-10 hover:bg-transparent hover:text-slate-300 border-solid border-2 border-gray-200 w-full  rounded-lg"
-                              >
-                                Takaful & Insurance
-                              </MenuButton>
-                              <Menu size="sm">
-                                <WrappedMenuItems/>
-                              </Menu>
-                            </Dropdown>
-
+                <MultipleSelectCheckmarks className="w-screen" />
                 {/* ////////////////////////////////////////////////////// */}
 
                 <DateValidationShouldDisableMonth/>
