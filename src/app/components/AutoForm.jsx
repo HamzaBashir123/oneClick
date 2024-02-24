@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import autoImg from "../assets/Takaful/autoside.svg";
 import "../globals.css";
@@ -9,6 +9,13 @@ import MultipleSelectCheckmarks from "./DropDownMenu";
 import SelectDropDown from "./SelectDropDown";
 
 const AutoForm = () => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+
   const carsOptions = [
     "Suzuki",
     "Toyota",
@@ -20,7 +27,7 @@ const AutoForm = () => {
     "MG",
   ];
   const carsModels = [
-    "Suzuki",
+    "Suzuk",
     "Toyota",
     "Honda",
     "Kia",
@@ -79,23 +86,30 @@ const AutoForm = () => {
                 <SelectDropDown data={carsOptions} />
                 <SelectDropDown data={carsModels} />
                 <SelectDropDown data={yearRange} />
+                
+                <div >
+                <label
+                  htmlFor="AcceptConditions"
+                  className=" relative  h-8 w-14 cursor-pointer rounded-full transition duration-300 ease-in-out"
+                >
+                  <input
+                    type="checkbox"
+                    id="AcceptConditions"
+                    className="peer sr-only"
+                    onChange={handleCheckboxChange}
 
-                <div>
-                  <label
-                    htmlFor="AcceptConditions"
-                    className="relative h-8 w-14 cursor-pointer rounded-full bg-gray-300 transition [-webkit-tap-highlight-color:_transparent] has-[:checked]:bg-blue-500"
-                  >
-                    <input
-                      type="checkbox"
-                      id="AcceptConditions"
-                      className="peer sr-only"
-                    />
+                  />
 
-                    <span className="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-gray-300 ring-[6px] ring-inset ring-white transition-all peer-checked:start-8 peer-checked:w-2 peer-checked:bg-white peer-checked:ring-transparent"></span>
-                  </label>
+                  <span className="absolute border border-sky-700 inset-y-0 left-0 m-1 h-6 w-6 rounded-full bg-sky-600 ring-[6px] ring-inset ring-white transition-all peer-checked:left-8 peer-checked:w-2 peer-checked:bg-blue-500 peer-checked:ring-transparent"></span>
+                </label>
+                <span className="ms-12 p-2  ">I already have an existing Takaful / Insurance cover</span>
+
                 </div>
 
-                <DateValidationShouldDisableMonth />
+            
+                <br />
+
+               {isChecked && <DateValidationShouldDisableMonth />}
 
                 <div className="mt-4">
                   <button

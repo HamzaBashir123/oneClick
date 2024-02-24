@@ -20,6 +20,7 @@ export default function DateValidationShouldDisableMonth() {
             shouldDisableMonth={isInCurrentMonth}
             views={['year', 'month', 'day']}
             label="Self Date of Birth*"
+            onChange={event => console.log(event.target.value)}
           />
         </DemoItem>
       

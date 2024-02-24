@@ -7,13 +7,8 @@ import { useEffect, useState } from "react";
 const SelectDropDown = ({ data }) => {
   const animalOptions = Array.isArray(data) ? data : [];
   const [selectedValue, setSelectedValue] = useState("");
-  console.log(selectedValue);
+  
 
-  useEffect(() => {
-    if (animalOptions.length > 0 && !selectedValue) {
-      setSelectedValue(animalOptions[0].value);
-    }
-  }, [animalOptions]);
 
 
   const handleChange = (event) => {
@@ -25,7 +20,7 @@ const SelectDropDown = ({ data }) => {
   return (
     <Select
       className="w-full leading-10 py-1"
-      placeholder="Select car modal"
+      placeholder={animalOptions[0]== 'Suzuki' ? 'Select Make' : animalOptions[0] == 2024 ? "Select Year" : 'Select Model'}
       indicator={<KeyboardArrowDown />}
       onChange={event => setSelectedValue(event.target.value)}
       sx={{
