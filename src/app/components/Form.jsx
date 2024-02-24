@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import Image from "next/image";
 import travelImg from "../assets/Takaful/travelside.svg";
@@ -12,7 +12,6 @@ import { Dropdown, Menu, MenuButton, MenuItem } from "@mui/joy";
 import { ArrowDropDown } from "@mui/icons-material";
 import WrappedMenuItems from "./DropDownMenu";
 import MultipleSelectCheckmarks from "./DropDownMenu";
-
 
 const Form = () => {
   return (
@@ -29,12 +28,13 @@ const Form = () => {
               />
               <div className="textAlignCenter text-black mx-2 ">
                 <div>
-                <span className="text-[#515151] text-3xl font-bold ">
-                  Travel{" "}
-                </span>
-                <span className="text-[#e91431] text-3xl font-bold">
-                  Takaful Plan
-                </span></div>
+                  <span className="text-[#515151] text-3xl font-bold ">
+                    Travel{" "}
+                  </span>
+                  <span className="text-[#e91431] text-3xl font-bold">
+                    Takaful Plan
+                  </span>
+                </div>
                 <p>Digital Takaful Solution for All</p>
               </div>
             </div>
@@ -158,14 +158,14 @@ const Form = () => {
                   </span>
                 </label>
                  */}
-                 <BasicDateRangeField/>
+                <BasicDateRangeField />
                 {/* ////////////////////////////////////////////////////// */}
 
                 {/* <DropdownMenu/> */}
                 <MultipleSelectCheckmarks className="w-screen" />
                 {/* ////////////////////////////////////////////////////// */}
 
-                <DateValidationShouldDisableMonth/>
+                <DateValidationShouldDisableMonth />
 
                 <div className="mt-4">
                   <button

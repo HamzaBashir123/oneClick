@@ -71,11 +71,11 @@ export default function MultipleSelectCheckmarks() {
       <FormControl sx={{ m: 0, width: '100%' }}>
         <InputLabel id="demo-multiple-checkbox-label">Select Groups / Countries</InputLabel>
         <Select
-          labelId="demo-multiple-checkbox-label"
+          labelId="Select Groups / Countries"
           id="demo-multiple-checkbox"
           multiple
           value={personName}
-          onChange={handleChange}
+          onChange={handleChange} 
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
