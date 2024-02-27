@@ -4,25 +4,21 @@ import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { useEffect, useState } from "react";
 
-const SelectDropDown = ({ data }) => {
+const SelectDropDown = ({ data ,setCarMakeValue }) => {
   const animalOptions = Array.isArray(data) ? data : [];
   const [selectedValue, setSelectedValue] = useState("");
   
-
-
-
-  const handleChange = (event) => {
-    const newValue = event?.target?.value;
-    setSelectedValue(newValue);
-    console.log("Selected Value:", newValue);
-  };
+// console.log(selectedValue);
+  useEffect(() => {
+    
+  }, [setCarMakeValue]);
 
   return (
     <Select
       className="w-full leading-10 py-1"
       placeholder={animalOptions[0]== 'Suzuki' ? 'Select Make' : animalOptions[0] == 2024 ? "Select Year" : 'Select Model'}
       indicator={<KeyboardArrowDown />}
-      onChange={event => setSelectedValue(event.target.value)}
+      onChange={(event)=> setCarMakeValue && setCarMakeValue(event?.target?.innerHTML)}
       sx={{
         width: 240,
         [`& .${selectClasses.indicator}`]: {

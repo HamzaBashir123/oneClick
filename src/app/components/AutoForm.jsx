@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import autoImg from "../assets/Takaful/autoside.svg";
 import "../globals.css";
@@ -7,35 +7,70 @@ import BasicDateRangeField from "./DateRange";
 import DateValidationShouldDisableMonth from "./DatePicker";
 import MultipleSelectCheckmarks from "./DropDownMenu";
 import SelectDropDown from "./SelectDropDown";
+const axios = require("axios");
 
 const AutoForm = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [carMake, setCarMake] = useState([]);
+  const [carModel, setCarModel] = useState([]);
+  const [carMakeValue, setCarMakeValue] = useState("");
+  const [modelFillterArray, setModelFillterArray] = useState([]);
+
+ 
+
+  const YourComponent = () => {
+    const fetchData = async () => {
+      const url =
+        "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/all-vehicles-model/records?limit=100";
+
+      try {
+        const response = await axios.get(url);
+        const makeModel = response.data;
+        const makeData = response.data.results.map((items) => items.make);
+        setCarMake(makeData);
+        
+
+        setCarModel(makeModel);
+        
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    useEffect(() => {
+      fetchData();
+    }, []);
+
+    return <div>{/* Your component content */}</div>;
+  };
+//  console.log(carModel);
+
+useEffect(() => {
+  const handleSelectChange = () => {
+    if (carModel && carModel.results) {
+      console.log("Selected Value in AutoForm:", carModel);
+
+      // Assuming carMakeValue is defined
+      const filterData = carModel.results.filter((item) => item.make === carMakeValue);
+
+      const modelData = filterData.map((items) => items.model);
+
+      setModelFillterArray(modelData);
+      console.log('Filtered Data', modelData);
+    } else {
+      console.error('Invalid carModel or carModel.results is undefined.');
+    }
+  };
+
+  handleSelectChange();
+}, [carMakeValue, carModel]);
+  YourComponent();
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
 
-  const carsOptions = [
-    "Suzuki",
-    "Toyota",
-    "Honda",
-    "Kia",
-    "Peugeot",
-    "Hyundai",
-    "Chargan",
-    "MG",
-  ];
-  const carsModels = [
-    "Suzuk",
-    "Toyota",
-    "Honda",
-    "Kia",
-    "Peugeot",
-    "Hyundai",
-    "Chargan",
-    "MG",
-  ];
   const yearRange = [
     "2024",
     "2023",
@@ -81,35 +116,37 @@ const AutoForm = () => {
               </div>
             </div>
 
-            <div className="rounded-lg bg-white p-4 shadow-lg lg:col-span-2 lg:p-4 ">
+            <div className="rounded-lg bg-white p-4 shadow-lg lg:col-span-2 lg:p-4">
               <form action="#" className="space-y-4">
-                <SelectDropDown data={carsOptions} />
-                <SelectDropDown data={carsModels} />
+                <SelectDropDown
+                  data={carMake}
+                  setCarMakeValue={setCarMakeValue}
+                />
+                <SelectDropDown data={modelFillterArray} />
                 <SelectDropDown data={yearRange} />
-                
-                <div >
-                <label
-                  htmlFor="AcceptConditions"
-                  className=" relative  h-8 w-14 cursor-pointer rounded-full transition duration-300 ease-in-out"
-                >
-                  <input
-                    type="checkbox"
-                    id="AcceptConditions"
-                    className="peer sr-only"
-                    onChange={handleCheckboxChange}
 
-                  />
+                <div>
+                  <label
+                    htmlFor="AcceptConditions"
+                    className=" relative  h-8 w-14 cursor-pointer rounded-full transition duration-300 ease-in-out"
+                  >
+                    <input
+                      type="checkbox"
+                      id="AcceptConditions"
+                      className="peer sr-only"
+                      onChange={handleCheckboxChange}
+                    />
 
-                  <span className="absolute border border-sky-700 inset-y-0 left-0 m-1 h-6 w-6 rounded-full bg-sky-600 ring-[6px] ring-inset ring-white transition-all peer-checked:left-8 peer-checked:w-2 peer-checked:bg-blue-500 peer-checked:ring-transparent"></span>
-                </label>
-                <span className="ms-12 p-2  ">I already have an existing Takaful / Insurance cover</span>
-
+                    <span className="absolute border border-sky-700 inset-y-0 left-0 m-1 h-6 w-6 rounded-full bg-sky-600 ring-[6px] ring-inset ring-white transition-all peer-checked:left-8 peer-checked:w-2 peer-checked:bg-blue-500 peer-checked:ring-transparent"></span>
+                  </label>
+                  <span className="ms-12 p-2 text-sm ">
+                    I already have an existing Takaful / Insurance cover
+                  </span>
                 </div>
 
-            
                 <br />
 
-               {isChecked && <DateValidationShouldDisableMonth />}
+                {isChecked && <DateValidationShouldDisableMonth />}
 
                 <div className="mt-4">
                   <button
