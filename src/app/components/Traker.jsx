@@ -65,14 +65,13 @@ function Traker() {
     });
     return (
         <>
-        Tracker
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 items-center mx-4 md:mx-8 lg:mx-28 my-10 border border-indigo-600    ">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 items-center mx-4 md:mx-8 lg:mx-28 my-10    ">
                 {/* Image Section */}
                 <div className="hidden lg:block xl:block mx-auto">
                     <Image src={trackerside} alt="side_bg" />
                 </div>
                 {/* Form Section  */}
-                <div className="max-w-sm mx-auto bg-white shadow-xl rounded-lg px-8 pt-6 pb-8 mb-4 drop-shadow-2xl max-h-screen border border-indigo-600 ">
+                <div className="max-w-sm mx-auto bg-white shadow-xl rounded-lg px-8 pt-6 pb-8 mb-4 drop-shadow-2xl max-h-screen">
                     <form onSubmit={(e) => handleSubmit(e, formData)}>
                         <div className="flex gap-2 w-full">
                             {/* Full-Name  */}
